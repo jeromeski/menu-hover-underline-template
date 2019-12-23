@@ -1,55 +1,78 @@
-import React, { Component } from "react";
+import React, { Component} from "react";
 import { Link } from "react-router-dom";
+import "./styles.css";
 
 class MenuPrimary extends Component {
-  state = {
-    isOpen: false,
-    anchorEl: null
-  };
+  constructor() {
+    super();
 
-  handleMouseEnter = event =>
+    this.state = {
+      isOpen: false,
+      anchorEl: null
+    };
+  }
+  
+
+  handleMenuItemHover = event =>
     this.setState({
       isOpen: true,
       anchorEl: event.currentTarget.id
     });
 
-  handleMouseLeave = () =>
+  handleSubmenuLeave = () => {
     this.setState({
       isOpen: false,
       anchorEl: null
-    });
+    })
+  };
+
+  handleMenuItemLeave = (event) => {
+    if(!event.relatedTarget.id && event.currentTarget.id) {
+      this.setState({
+        isOpen: false
+      })
+    } 
+  }
 
   render() {
     const styles = {
       overlay: {
-        backgroundColor: "black",
-        height: "100vh",
-        width: "100vw",
-        opacity: 0.25,
-        position: "absolute",
-        top: "135px"
+      top: 0,
+      bottom: 0,
+      right: 0,
+      left: 0,
+      backgroundColor: 'rgba(0,0,0,.465)',
+      zIndex: 94,
+      position: 'fixed',
+      display: 'block',
+      visibility: 'visible',
+      opacity: 1,
+      transition: 'opacity 100ms ease-in'
       }
     };
 
     return (
-      <div id="header" className="global-header">
+      <div>
+<div id="header" className="global-header">
         <nav id="primary-nav" className="navigation__wrapper">
           <ul className="navigation clearfix">
             <li className="first-level">
               <Link
                 id="arrivals"
                 className="navigation__link"
-                onMouseEnter={this.handleMouseEnter}
+                onMouseEnter={this.handleMenuItemHover}
+                onMouseLeave={this.handleMenuItemLeave}
               >
                 NEW ARRIVALS
               </Link>
               <div
+                id='subNavigation'
                 className={`${
                   this.state.isOpen && this.state.anchorEl === "arrivals"
                     ? "is-open"
                     : ""
                 } sub-navigation`}
-                onMouseLeave={this.handleMouseLeave}
+                onMouseLeave={this.handleSubmenuLeave}
               >
                 <nav className="sub-navigation__wrapper sub-navigation_new-arrivals">
                   <div className="sub-navigation__categories">
@@ -64,22 +87,23 @@ class MenuPrimary extends Component {
                 </nav>
               </div>
             </li>
-            {this.state.isOpen && <div style={styles.overlay} />}
             <li className="first-level">
               <Link
                 id="men"
                 className="navigation__link"
-                onMouseEnter={this.handleMouseEnter}
+                onMouseEnter={this.handleMenuItemHover}
+                onMouseLeave={this.handleMenuItemLeave}
               >
                 MEN
               </Link>
               <div
+                id='subNavigation'
                 className={`${
                   this.state.isOpen && this.state.anchorEl === "men"
                     ? "is-open"
                     : ""
                 } sub-navigation`}
-                onMouseLeave={this.handleMouseLeave}
+                onMouseLeave={this.handleSubmenuLeave}
               >
                 <nav className="sub-navigation__wrapper sub-navigation_new-arrivals">
                   <div className="sub-navigation__categories">
@@ -98,17 +122,19 @@ class MenuPrimary extends Component {
               <Link
                 id="women"
                 className="navigation__link"
-                onMouseEnter={this.handleMouseEnter}
+                onMouseEnter={this.handleMenuItemHover}
+                onMouseLeave={this.handleMenuItemLeave}
               >
                 WOMEN
               </Link>
               <div
+                id='subNavigation'
                 className={`${
                   this.state.isOpen && this.state.anchorEl === "women"
                     ? "is-open"
                     : ""
                 } sub-navigation`}
-                onMouseLeave={this.handleMouseLeave}
+                onMouseLeave={this.handleSubmenuLeave}
               >
                 <nav className="sub-navigation__wrapper sub-navigation_new-arrivals">
                   <div className="sub-navigation__categories">
@@ -127,17 +153,19 @@ class MenuPrimary extends Component {
               <Link
                 id="kids"
                 className="navigation__link"
-                onMouseEnter={this.handleMouseEnter}
+                onMouseEnter={this.handleMenuItemHover}
+                onMouseLeave={this.handleMenuItemLeave}
               >
                 KIDS
               </Link>
               <div
+                id='subNavigation'
                 className={`${
                   this.state.isOpen && this.state.anchorEl === "kids"
                     ? "is-open"
                     : ""
                 } sub-navigation`}
-                onMouseLeave={this.handleMouseLeave}
+                onMouseLeave={this.handleSubmenuLeave}
               >
                 <nav className="sub-navigation__wrapper sub-navigation_new-arrivals">
                   <div className="sub-navigation__categories">
@@ -156,17 +184,19 @@ class MenuPrimary extends Component {
               <Link
                 id="shoes"
                 className="navigation__link"
-                onMouseEnter={this.handleMouseEnter}
+                onMouseEnter={this.handleMenuItemHover}
+                onMouseLeave={this.handleMenuItemLeave}
               >
                 SHOES
               </Link>
               <div
+                id='subNavigation'
                 className={`${
                   this.state.isOpen && this.state.anchorEl === "shoes"
                     ? "is-open"
                     : ""
                 } sub-navigation`}
-                onMouseLeave={this.handleMouseLeave}
+                onMouseLeave={this.handleSubmenuLeave}
               >
                 <nav className="sub-navigation__wrapper sub-navigation_new-arrivals">
                   <div className="sub-navigation__categories">
@@ -185,17 +215,19 @@ class MenuPrimary extends Component {
               <Link
                 id="outlet"
                 className="navigation__link"
-                onMouseEnter={this.handleMouseEnter}
+                onMouseEnter={this.handleMenuItemHover}
+                onMouseLeave={this.handleMenuItemLeave}
               >
                 OUTLET
               </Link>
               <div
+                id='subNavigation'
                 className={`${
                   this.state.isOpen && this.state.anchorEl === "outlet"
                     ? "is-open"
                     : ""
                 } sub-navigation`}
-                onMouseLeave={this.handleMouseLeave}
+                onMouseLeave={this.handleSubmenuLeave}
               >
                 <nav className="sub-navigation__wrapper sub-navigation_new-arrivals">
                   <div className="sub-navigation__categories">
@@ -212,6 +244,8 @@ class MenuPrimary extends Component {
             </li>
           </ul>
         </nav>
+      </div>
+      {this.state.isOpen && <div style={styles.overlay} />}
       </div>
     );
   }
