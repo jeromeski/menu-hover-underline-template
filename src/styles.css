@@ -145,7 +145,7 @@ ul {
   text-align: center;
 }
 
-.is-open {
+.is-open .sub-navigation {
   display: block;
 }
 
@@ -154,6 +154,7 @@ ul {
 .is-open .navigation__link,
 .navigation__link:hover {
   color: #e70033;
+  font-weight: bold;
 }
 
 .is-open .navigation__link:after,
@@ -183,10 +184,13 @@ ul {
   display: inline-block;
   line-height: 24px;
   color: #1d1d1d;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .sub-navigation a:hover {
   color: #e31b23;
+  font-weight: bold;
 }
 
 .sub-navigation__categories,
